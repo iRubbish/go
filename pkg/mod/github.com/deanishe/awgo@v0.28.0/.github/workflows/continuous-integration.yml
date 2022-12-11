@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    name: Lint and test
+    strategy:
+      matrix:
+        go-version: [1.13.x, 1.14.x, 1.15.x]
+        platform: [macos-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Fetch dependencies
+        run: |
+          go get -v -t -d ./...
+
+      - name: Install linters
+        run: |
+          go get golang.org/x/lint/golint
+          go get github.com/golangci/golangci-lint/cmd/golangci-lint
+
+      - name: Lint Go source code
+        run: zsh run-tests.sh -vl
+
+      - name: Install test dependencies
+        run: go get github.com/mfridman/tparse
+
+      - name: Run unit tests
+        run: zsh run-tests.sh -ic ./...
+
+      - name: Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: coverage.out
+
+      - name: Codacy
+        run: |
+          go install github.com/schrej/godacov
+          godacov -r coverage.out -t ${{ secrets.CODACY_TOKEN }} -c ${{ github.sha }}
+
+      # Currently broken
+      # - name: Codacy
+      #   uses: brpaz/godacov-action@v1
+      #   with:
+      #     reportPath: coverage.out
+      #     codacyToken: ${{ secrets.CODACY_TOKEN }}
+      #     commitId: ${{ github.sha }}
+
+      - name: Coveralls
+        uses: shogo82148/actions-goveralls@v1
+        with:
+          path-to-profile: coverage.out
+          flag-name: Go-${{ matrix.go-version }}
+          parallel: true
+
+  finish:
+    name: Coveralls upload
+    needs: test
+    runs-on: macos-latest
+    steps:
+      - uses: shogo82148/actions-goveralls@v1
+        with:
+          parallel-finished: true

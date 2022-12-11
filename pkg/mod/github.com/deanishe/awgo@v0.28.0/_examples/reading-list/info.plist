@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>net.deanishe.awgo.demo-reading-list</string>
+	<key>connections</key>
+	<dict>
+		<key>1BA099BD-A04F-4304-91C6-6B6CC04BFF81</key>
+		<array/>
+		<key>F3DFD0D4-B306-48DD-A915-34D3CF427B73</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1BA099BD-A04F-4304-91C6-6B6CC04BFF81</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Dean Jackson</string>
+	<key>description</key>
+	<string>Search your reading list</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>AwGo Demo: Reading List</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>toread</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./reading-list "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Search books on your reading list</string>
+				<key>title</key>
+				<string>Reading List</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F3DFD0D4-B306-48DD-A915-34D3CF427B73</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>1BA099BD-A04F-4304-91C6-6B6CC04BFF81</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>AwGo: Reading List
+==================
+
+This workflow demonstrates more complex fuzzy filtering, ordering items by status.</string>
+	<key>uidata</key>
+	<dict>
+		<key>1BA099BD-A04F-4304-91C6-6B6CC04BFF81</key>
+		<dict>
+			<key>xpos</key>
+			<integer>230</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>F3DFD0D4-B306-48DD-A915-34D3CF427B73</key>
+		<dict>
+			<key>note</key>
+			<string>Filters reading list, putting read books at the bottom.</string>
+			<key>xpos</key>
+			<integer>60</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>0.1</string>
+	<key>webaddress</key>
+	<string>https://godoc.org/github.com/deanishe/awgo</string>
+</dict>
+</plist>
